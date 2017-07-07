@@ -4,19 +4,25 @@
 class GroceryListItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {done: false};
   }
 
-  onListItemClick () {
-    console.log('I got clicked');
+  onListItemClick (event) {
+    console.log(event);
+    this.setState({
+      done: !this.state.done
+    });
   }
 
   render() {
+    var style = {
+      fontWeight: this.state.done ? 'bold' : 'normal'
+    };
+
     return (
-      <li key={this.props.key} onClick={event => this.onListItemClick()}>{this.props.item}</li>
+      <li style={style} key={this.props.key} onClick={event => this.onListItemClick(event)}>{this.props.item}</li>
     );
   }
-
-
 }
 
 
@@ -35,17 +41,3 @@ var items = ['cucumber', 'kale', 'daikon'];
 
 ReactDOM.render(<GroceryList props={items} />, document.getElementById('app'));
 
-
-
-
-// const GroceryListItem = (props) => {
-//   var onListItemClick = (event) => {
-//     console.log('I got clicked');
-//   };
-//   return (<ul>
-//     {props.groceryItems.map(function (item) {
-//       return [<li onClick={onListItemClick}>{item}</li>];
-//     })}
-//     </ul>
-//   );
-// }
