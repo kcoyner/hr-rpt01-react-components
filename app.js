@@ -1,19 +1,18 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 
-const GroceryListItems = (props) => {
+const GroceryListItem = (props) => {
+
+  var onListItemClick = (event) => {
+    console.log('I got clicked');
+  };
+
   return (<ul>
     {props.groceryItems.map(function (item) {
-      return [<li>{item}</li>];
+      return [<li onClick={onListItemClick}>{item}</li>];
     })}
     </ul>
   );
-
-  // return (
-  //       <li>{props.items[0]}</li>
-  //       <li>{props.items[1]}</li>
-  // );
-
 }
 
 const GroceryList = () => {
@@ -21,7 +20,7 @@ const GroceryList = () => {
   return (
     <div>
       <h2>Grocery List</h2>
-        <GroceryListItems groceryItems={items} />
+        <GroceryListItem groceryItems={items} />
     </div>
   );
 }
@@ -29,5 +28,4 @@ const GroceryList = () => {
 ReactDOM.render(<GroceryList />, document.getElementById('app'));
 
 
-// <GroceryListItems items={['cucumbers', 'kale']} />
 
